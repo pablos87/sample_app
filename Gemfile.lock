@@ -97,6 +97,7 @@ GEM
       gem_plugin (>= 0.2.3)
     sinatra (1.0)
       rack (>= 1.0)
+    spork (0.8.4)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -130,6 +131,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails
   sho-mongrel
+  spork
   sqlite3-ruby
   taps
   webrat

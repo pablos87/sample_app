@@ -22,6 +22,7 @@ group :test do
   gem 'diff-lcs'
   gem 'rspec-core'
   gem 'webrat'
+  gem 'spork'
 end
 
 # Use unicorn as the web server
