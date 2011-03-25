@@ -13,6 +13,7 @@ gem 'taps'
 
 group :development do
   gem 'rspec-rails'
+  gem 'annotate-models'
 end
 
 group :test do
