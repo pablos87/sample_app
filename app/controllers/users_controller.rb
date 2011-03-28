@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
   
   def new
@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
+  end
+  
+  def index
+    @title = "All users"
+    @users = User.paginate(:page => params[:page], :per_page => 20)
   end
 
   def edit
