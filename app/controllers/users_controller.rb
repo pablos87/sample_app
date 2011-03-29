@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   before_filter :require_no_user, :only => [:new, :create] 
+  before_filter :protect_from_deleting_admin, :only => :destroy
   
   def new
   	@user = User.new
@@ -70,6 +71,11 @@ class UsersController < ApplicationController
 
   def require_no_user
     redirect_to(root_path) if signed_in?	
+  end
+  
+  def protect_from_deleting_admin
+  	@user = User.find(params[:id])
+    redirect_to(users_path) if current_user?(@user)
   end
   
 end
