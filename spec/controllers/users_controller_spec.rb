@@ -29,7 +29,19 @@ describe UsersController do
       get :new
       response.should have_selector("input[name='user[password_confirmation]'][type='password']")	
     end
-
+    
+    describe "for signed-in users" do
+      
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in(@user)
+      end
+     
+      it "should redirect to root path" do
+      	get :new
+      	response.should redirect_to(root_path)
+      end
+    end
   end
   
   it "should have the right title" do
@@ -92,6 +104,20 @@ describe UsersController do
         post :create, :user => @attr
         response.should render_template('new')
       end
+      
+      describe "for signed-in users" do
+      
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in(@user)
+      end
+     
+      it "should redirect to root path" do
+      	post :create, :user => @attr
+      	response.should redirect_to(root_path)
+      end
+    end
+      
     end
     
     describe "success" do
@@ -123,6 +149,8 @@ describe UsersController do
       end
 
     end
+    
+
   end
   
   describe "GET 'edit'" do
